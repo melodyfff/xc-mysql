@@ -1,4 +1,5 @@
 import com.xinchen.orm.jpa.model.relationship.Family;
+import com.xinchen.orm.jpa.model.relationship.Job;
 import com.xinchen.orm.jpa.model.relationship.Person;
 import junit.framework.TestCase;
 import org.junit.Assert;
@@ -50,6 +51,13 @@ public class JpaTest {
                 person.setFirstName("Jim_"+i);
                 person.setLastName("Test_"+i);
 
+                Job job = new Job();
+                job.setSalery(100L);
+                job.setJobDescr("Job_"+i);
+                em.persist(job);
+
+                person.getJobList().add(job);
+
                 // 托管状态
                 em.persist(person);
 
@@ -98,6 +106,24 @@ public class JpaTest {
 
         Assert.assertEquals(1, resultList.size());
         Assert.assertEquals(40,((Family)(q.getSingleResult())).getMembers().size());
+        em.close();
+    }
+
+    @Test(expected = javax.persistence.NoResultException.class)
+    public void deletePerson() {
+        EntityManager em = factory.createEntityManager();
+        // Begin a new local transaction so that we can persist a new entity
+        em.getTransaction().begin();
+        Query q = em
+                .createQuery("SELECT p FROM Person p WHERE p.firstName = :firstName AND p.lastName = :lastName");
+        q.setParameter("firstName", "Jim_1");
+        q.setParameter("lastName", "Test_!");
+        Person user = (Person) q.getSingleResult();
+        em.remove(user);
+        em.getTransaction().commit();
+        Person person = (Person) q.getSingleResult();
+        // Begin a new local transaction so that we can persist a new entity
+
         em.close();
     }
 

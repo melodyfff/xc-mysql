@@ -1,4 +1,4 @@
-package com.xinchen.orm.jpa.model.relationship;
+package com.xinchen.orm.jpa.model.permission;
 
 import lombok.Data;
 
@@ -11,12 +11,11 @@ import java.io.Serializable;
 /**
  * @author xinchen
  * @version 1.0
- * @date 11/10/2019 16:59
+ * @date 12/10/2019 14:47
  */
-@Data
 @MappedSuperclass
+@Data
 public class Base implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

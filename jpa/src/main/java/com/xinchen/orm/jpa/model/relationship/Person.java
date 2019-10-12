@@ -24,8 +24,9 @@ public class Person extends Base{
     private String firstName;
     private String lastName;
 
-    @ManyToOne
-    private Family family;
+    /** 表明对应关系,此次测试可用不要 */
+//    @ManyToOne()
+//    private Family family;
 
     /** 标注不被持久化 */
     @Transient
