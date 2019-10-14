@@ -2,12 +2,16 @@ package com.xinchen.orm.spring.jpa.core.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -37,15 +41,19 @@ public class User extends Base{
     private String password;
 
 
-    @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.MERGE},fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToMany(cascade = {CascadeType.REFRESH,CascadeType.DETACH},fetch = FetchType.LAZY)
+    @JoinTable(name = "app_user_role",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "id")}
+    )
     private List<Role> roles = new ArrayList<>();
 
-
+    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_time")
     private Date createTime;
 
+    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_time")
     private Date updateTime;

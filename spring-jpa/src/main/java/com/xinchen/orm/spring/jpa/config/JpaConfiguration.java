@@ -1,7 +1,9 @@
 package com.xinchen.orm.spring.jpa.config;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -32,7 +34,9 @@ import java.util.Properties;
 
 )
 @EnableTransactionManagement
+@EnableJpaAuditing
 public class JpaConfiguration {
+
 
     @Bean
     public DataSource dataSource(){
@@ -40,6 +44,15 @@ public class JpaConfiguration {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .build();
+    }
+
+    @Bean
+    public DataSource mysqlDataSource(){
+        MysqlConnectionPoolDataSource dataSource = new MysqlConnectionPoolDataSource();
+        dataSource.setUser("root");
+        dataSource.setPassword("123");
+        dataSource.setURL("jdbc:mysql://localhost:3306/app?characterEncoding=UTF-8");
+        return dataSource;
     }
 
     @Bean
