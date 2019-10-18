@@ -7,3 +7,5 @@
 
 教程: https://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
 
+> 当使用Spring JPA时,启动时处于classpath根目录下的 `import.sql` 文件会被执行(前提是ddl-auto属性被设置为 create 或 create-drop)
+
