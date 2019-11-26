@@ -16,6 +16,8 @@
     <modules>
         <module>jpa</module>
         <module>spring-jpa</module>
+        <module>spring-boot-jpa</module>
+        <module>spring-boot-jdbc</module>
     </modules>
 
 
