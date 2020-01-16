@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间的名字要和Dao里面的接口名一致，不然会报错：org.apache.ibatis.binding.BindingException:
+	Invalid bound statement (not found): -->
+<mapper namespace="com.xinchen.mybatis.core.dao.UserDao">
+    <resultMap type="com.xinchen.mybatis.core.entity.User" id="User">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_name" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		t.id,
+		t.user_name,
+		t.password
+	</sql>
+
+    <!-- 查询所有 -->
+    <select id="queryAll" resultMap="User">
+        select <include refid="Base_Column_List" />
+        from app_user as t
+    </select>
+
+</mapper>

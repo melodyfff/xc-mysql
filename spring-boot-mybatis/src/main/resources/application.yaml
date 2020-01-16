@@ -1,7 +1,7 @@
-mybatis:
-  mapper-locations: mapper/*.xml
-
 spring:
+  profiles:
+    active: boot
+
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -17,7 +17,15 @@ spring:
       min-idle: 1
       max-active: 20
       max-wait: 6000
-      validation-query: select 1
+      validation-query: select 1;
 
+  h2:
+    console:
+      enabled: true
+      path: /h2
 
-
+# 设置tomcat相关信息
+server:
+  tomcat:
+    max-threads: 1000 # 默认200
+    max-connections: 10000 # 默认10000

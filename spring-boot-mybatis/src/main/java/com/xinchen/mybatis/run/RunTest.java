@@ -1,4 +1,4 @@
-package com.xinchen.springbootmybatis.run;
+package com.xinchen.mybatis.run;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,7 +8,6 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 
 /**
  * @author xinchen
@@ -29,8 +28,8 @@ public class RunTest implements CommandLineRunner {
                 final ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()){
                     for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
-                        System.out.println(resultSet.getObject(i));
-
+//                        System.out.println(resultSet.getObject(i));
+                        // ignore
                     }
                 }
             }

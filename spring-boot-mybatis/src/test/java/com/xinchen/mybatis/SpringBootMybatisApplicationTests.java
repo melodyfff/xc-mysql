@@ -1,4 +1,4 @@
-package com.xinchen.springbootmybatis;
+package com.xinchen.mybatis;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

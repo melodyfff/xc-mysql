@@ -1,4 +1,4 @@
-package com.xinchen.springbootmybatis.druid;
+package com.xinchen.mybatis.druid;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 
