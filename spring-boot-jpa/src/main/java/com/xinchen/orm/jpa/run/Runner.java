@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -26,14 +27,17 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        long start = System.currentTimeMillis();
-        List<BaseData> list = new ArrayList<>();
-        for (int i = 0; i < 10000; i++) {
-            BaseData baseData = new BaseData();
-            baseData.setData("Hello - " + i);
-            list.add(baseData);
+        final Optional<BaseData> byId = baseDataRepository.findById(1);
+        if (!byId.isPresent()){
+            long start = System.currentTimeMillis();
+            List<BaseData> list = new ArrayList<>();
+            for (int i = 0; i < 10000; i++) {
+                BaseData baseData = new BaseData();
+                baseData.setData("Hello - " + i);
+                list.add(baseData);
+            }
+            baseDataRepository.saveAll(list);
+            log.warn("{} : {} ms", "Total Cost", System.currentTimeMillis() - start);
         }
-        baseDataRepository.saveAll(list);
-        log.warn("{} : {} ms", "Total Cost", System.currentTimeMillis() - start);
     }
 }
