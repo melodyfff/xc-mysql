@@ -1,6 +1,5 @@
-package com.xinchen.orm.elasticsearch;
+package com.xinchen.orm.elasticsearch.domain;
 
-import com.xinchen.orm.elasticsearch.domain.LogInfoEntity;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -37,10 +36,10 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 @RestController
 @RequestMapping("/")
-public class TestController {
+public class LogInfoController {
     private final ElasticsearchOperations elasticsearchOperations;
 
-    public TestController(ElasticsearchOperations elasticsearchOperations) {
+    public LogInfoController(ElasticsearchOperations elasticsearchOperations) {
         this.elasticsearchOperations = elasticsearchOperations;
     }
 
