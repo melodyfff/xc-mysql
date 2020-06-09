@@ -3,7 +3,6 @@ package com.xinchen.orm.jpa.core;
 import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.springframework.aop.Advisor;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
 
 /**
  *
- * Tracing SQL Queries
+ * Tracing SQL Queries,log sql
  *
  * using a data source proxy to trace Hibernate/JPA SQL statements
  *
@@ -52,7 +51,7 @@ public class DatasourceProxyBeanPostProcessor implements BeanPostProcessor {
 
         private final DataSource dataSource;
 
-        public ProxyDataSourceInterceptor(final DataSource dataSource) {
+        private ProxyDataSourceInterceptor(final DataSource dataSource) {
             this.dataSource = ProxyDataSourceBuilder
                     .create(dataSource)
                     .name("Batch-Insert-Logger")

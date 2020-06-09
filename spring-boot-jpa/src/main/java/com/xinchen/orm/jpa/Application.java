@@ -1,9 +1,8 @@
 package com.xinchen.orm.jpa;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 
 /**
@@ -12,12 +11,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  *
  * Batch insert/update reference: https://www.baeldung.com/jpa-hibernate-batch-insert-update
  *
+ * Batch insert/update doesn't work? see: https://www.baeldung.com/jpa-hibernate-batch-insert-update - 7. @Id Generation Strategy
+ *
+ * 深坑： Entity的ID生成策略为 GenerationType.IDENTITY时，不能批处理
+ *
  */
 @SpringBootApplication
-@EntityScan("com.xinchen.orm.jpa.core.entity")
-@EnableJpaRepositories
 public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        new SpringApplicationBuilder()
+                .sources(Application.class)
+                .bannerMode(Banner.Mode.OFF)
+                .run();
     }
 }

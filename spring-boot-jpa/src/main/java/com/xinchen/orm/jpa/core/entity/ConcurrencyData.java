@@ -20,7 +20,7 @@ import javax.persistence.Version;
 @Table(name = "base_concurrency_data")
 public class ConcurrencyData {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "value1")
     private int value1;

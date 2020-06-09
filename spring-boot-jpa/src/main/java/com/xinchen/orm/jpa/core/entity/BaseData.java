@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "base_data_test")
 public class BaseData {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "data")
