@@ -1,0 +1,14 @@
+spring:
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true # default true
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            client:
+              WIRE: trace # To see what is actually sent to and received from the server Request / Response

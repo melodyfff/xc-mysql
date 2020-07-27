@@ -20,7 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @version 1.0
  * @date Created In 2020/5/5 13:06
  */
-@Component
+//@Component
 public class ConcurrencyDataRunner implements CommandLineRunner {
 
     @Resource
