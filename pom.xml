@@ -19,6 +19,7 @@
         <module>spring-boot-jpa</module>
         <module>spring-boot-jdbc</module>
         <module>spring-boot-mybatis</module>
+        <module>mybatis</module>
     </modules>
 
 
@@ -57,7 +58,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
