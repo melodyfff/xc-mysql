@@ -40,7 +40,7 @@ public class BatchRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         long start = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
-            if (i>0&&i%5==0){
+            if (i>0&&i%6==0){
                 // triggers a transaction synchronization
                 entityManager.flush();
                 // To clear entities in the persistence context
