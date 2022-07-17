@@ -32,7 +32,7 @@
         <spring.data.version>Moore-RELEASE</spring.data.version>
         <lombok.version>1.18.2</lombok.version>
         <logback.version>1.2.3</logback.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
     </properties>
 
 
