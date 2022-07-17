@@ -11,6 +11,8 @@ spring:
     sql-script-encoding: UTF-8
     schema:
       - classpath:init/app_user.sql
+      - classpath:init/app_address.sql
+      - classpath:init/app_phone.sql
     initialization-mode: embedded
     druid:
       initial-size: 8

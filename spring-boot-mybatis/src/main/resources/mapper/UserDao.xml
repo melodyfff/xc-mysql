@@ -4,22 +4,40 @@
 <!-- 命名空间的名字要和Dao里面的接口名一致，不然会报错：org.apache.ibatis.binding.BindingException:
 	Invalid bound statement (not found): -->
 <mapper namespace="com.xinchen.mybatis.core.dao.UserDao">
+
     <resultMap type="com.xinchen.mybatis.core.entity.User" id="User">
-        <result column="id" property="id" jdbcType="INTEGER" />
+        <id column="id" property="id" jdbcType="INTEGER" />
         <result column="user_name" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+
+        <!--  一对一结果映射  -->
+        <association property="addresses" javaType="com.xinchen.mybatis.core.entity.Address">
+          <id column="user_id" property="userId" />
+          <result column="address" property="address"  />
+        </association>
+
+        <!--  一对多结果映射  -->
+        <collection property="phones" javaType="java.util.List" ofType="com.xinchen.mybatis.core.entity.Phone">
+          <id column="user_id" property="userId" />
+          <result column="phone" property="phone"  />
+        </collection>
     </resultMap>
+
 
     <sql id="Base_Column_List">
 		t.id,
 		t.user_name,
-		t.password
-	</sql>
+		t.password,
+		t2.*,
+    t3.*
+	  </sql>
 
     <!-- 查询所有 -->
     <select id="queryAll" resultMap="User">
         select <include refid="Base_Column_List" />
         from app_user as t
+            left join app_address as t2 on(t.id = t2.user_id)
+            left join app_phone t3 on (t.id = t3.user_id);
     </select>
 
 </mapper>

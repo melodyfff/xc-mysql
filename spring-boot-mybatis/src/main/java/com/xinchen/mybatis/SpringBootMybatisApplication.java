@@ -10,7 +10,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  */
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan(basePackages = "com.xinchen.mybatis.core.dao")
+@MapperScan(basePackages = {"com.xinchen.mybatis.core.dao","com.xinchen.mybatis.core.mapper"})
 public class SpringBootMybatisApplication {
 
     public static void main(String[] args) {
